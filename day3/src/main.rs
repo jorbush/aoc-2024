@@ -6,10 +6,7 @@ fn read_input_corrupted() -> String {
 }
 
 fn get_mults(input: String) -> Vec<(i32, i32)> {
-    // input = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))"
-    // output = [(2, 4), (5, 5), (11, 8), (8, 5)]
     let mut mults = Vec::new();
-    // use slice windows to find the indexes of 'mul(z, y)'
     let re = Regex::new(r"mul\((\d+),(\d+)\)").unwrap();
     for cap in re.captures_iter(&input) {
         let x: i32 = cap[1].parse().unwrap();

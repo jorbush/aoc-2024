@@ -1,16 +1,5 @@
 fn read_input_two_lists() -> (Vec<i32>, Vec<i32>) {
     let input = std::fs::read_to_string("input.txt").unwrap();
-    // file is a two lists in columns:
-    /*
-    3   4
-    4   3
-    2   5
-    1   3
-    3   9
-    3   3
-    */
-    // return two lists of integers
-    // (3, 4, 2, 1, 3, 3), (4, 3, 5, 3, 9, 3)
     let mut left_list = Vec::new();
     let mut right_list = Vec::new();
     for line in input.lines() {
