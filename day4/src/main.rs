@@ -51,8 +51,6 @@ fn reverse_diagonals(grid: &Vec<String>) -> Vec<String> {
     let rows = grid.len();
     let cols = grid[0].len();
     let mut result: Vec<String> = Vec::new();
-
-    // Diagonales desde la parte superior derecha hacia abajo izquierda
     for start_col in (0..cols).rev() {
         let mut diagonal = String::new();
         let mut row = 0;
@@ -64,8 +62,6 @@ fn reverse_diagonals(grid: &Vec<String>) -> Vec<String> {
         }
         result.push(diagonal);
     }
-
-    // Diagonales desde la parte superior izquierda hacia abajo izquierda
     for start_row in 1..rows {
         let mut diagonal = String::new();
         let mut row = start_row;
@@ -77,7 +73,6 @@ fn reverse_diagonals(grid: &Vec<String>) -> Vec<String> {
         }
         result.push(diagonal);
     }
-
     result
 }
 
