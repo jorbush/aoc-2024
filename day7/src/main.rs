@@ -1,25 +1,30 @@
-use std::collections::HashMap;
-fn read_input_equations() -> HashMap<i32, Vec<i32>> {
+use std::{collections::HashMap, process::exit};
+fn read_input_equations() -> HashMap<i64, Vec<i64>> {
     let input = std::fs::read_to_string("input.txt").unwrap();
     let mut equations = HashMap::new();
     for line in input.lines() {
         let mut parts = line.split(":");
         let result = parts.next().unwrap();
         let operands_part = parts.next().unwrap();
-        let result = match result.parse::<i32>() {
+        let result = match result.parse::<i64>() {
             Ok(val) => val,
-            Err(_) => continue,
+            Err(err) => {
+                println!("Error parsing result: {}", result);
+                println!("Line: {}", line);
+                println!("Error: {}", err);
+                exit(0);
+            }
         };
         let operands = operands_part
             .split_whitespace()
-            .filter_map(|x| x.parse::<i32>().ok())
+            .filter_map(|x| x.parse::<i64>().ok())
             .collect();
         equations.insert(result, operands);
     }
     equations
 }
 
-fn can_be_resolved_equation(operands: &[i32], target: i32) -> bool {
+fn can_be_resolved_equation(operands: &[i64], target: i64) -> bool {
     if operands.len() == 1 {
         return operands[0] == target;
     }
@@ -35,7 +40,7 @@ fn can_be_resolved_equation(operands: &[i32], target: i32) -> bool {
     false
 }
 
-fn part_one() -> i32 {
+fn part_one() -> i64 {
     let equations = read_input_equations();
     let mut sum_resolved = 0;
     for (result, operands) in equations.iter() {
@@ -47,7 +52,7 @@ fn part_one() -> i32 {
     sum_resolved
 }
 
-fn part_two() -> i32 {
+fn part_two() -> i64 {
     0
 }
 
