@@ -25,6 +25,9 @@ fn read_input_equations() -> HashMap<i64, Vec<i64>> {
 }
 
 fn can_be_resolved_equation(operands: &[i64], target: i64) -> bool {
+    if target < 0 {
+        return false;
+    }
     if operands.len() == 1 {
         return operands[0] == target;
     }
